@@ -26,6 +26,9 @@ apply "$root/patches/wine-hotfixes/pending/ntdll-skip-listing-case-folding-dir-f
 apply "$root/patches/wine-hotfixes/pending/winedmo-flush-parser-on-drain.patch"
 apply "$root/patches/wine-hotfixes/pending/winedmo-accept-input-after-drain.patch"
 apply "$root/patches/wine-hotfixes/pending/ntdll-arm64ec-fill-hybrid-pointers-in-image-copies.patch"
+cd "$root/piper"
+echo "piper patch: onnxruntime-download-from-fork-release.patch"
+patch -Np1 --forward < "$root/patches/piper/onnxruntime-download-from-fork-release.patch"
 if [ -f "$root/FEX/CMakeLists.txt" ]; then
   cd "$root/FEX"
   for p in "$root"/patches/fex/*.patch; do
