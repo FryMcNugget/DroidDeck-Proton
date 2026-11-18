@@ -29,9 +29,11 @@ apply "$root/patches/wine-hotfixes/pending/mmdevapi-skip-death-stranding-code-ho
 apply "$root/patches/wine-hotfixes/pending/ntdll-arm64ec-get-context-null.patch"
 apply "$root/patches/wine-hotfixes/pending/ntdll-futex-entry-pool.patch"
 apply "$root/patches/wine-hotfixes/pending/ntdll-arm64ec-fill-hybrid-pointers-in-image-copies.patch"
-cd "$root/piper"
-echo "piper patch: onnxruntime-download-from-fork-release.patch"
-patch -Np1 --forward < "$root/patches/piper/onnxruntime-download-from-fork-release.patch"
+if [ -f "$root/piper/CMakeLists.txt" ]; then
+  cd "$root/piper"
+  echo "piper patch: onnxruntime-download-from-fork-release.patch"
+  patch -Np1 --forward < "$root/patches/piper/onnxruntime-download-from-fork-release.patch"
+fi
 if [ -f "$root/FEX/CMakeLists.txt" ]; then
   cd "$root/FEX"
   for p in "$root"/patches/fex/*.patch; do
